@@ -13,20 +13,30 @@
 
 Route::get('/', function () {
 
-	
-	//$order= App\Models\Order::find(1);
-
-	//return $order->products;
-
-	//return App\Models\User::find(2);
-    //return view('welcome');
-
-
     $type = App\Models\Type::find(2);
-
-
     return view('productlist',['type'=>$type]);
 });
+
+Route::get('types/{id}', function ($id) {
+
+	$type = App\Models\Type::find($id);
+    return view('productlist',['type'=>$type]);
+
+});
+
+Route::get('users/create', function () {
+
+	return view('registerform');
+});
+
+Route::get('users/{id}', function ($id) {
+
+	$user = App\Models\User::find($id);
+    return view('userdetails',['user'=>$user]);
+
+
+});
+
 
 /*
 |--------------------------------------------------------------------------
