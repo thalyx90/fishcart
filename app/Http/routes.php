@@ -17,25 +17,7 @@ Route::get('/', function () {
     return view('productlist',['type'=>$type]);
 });
 
-Route::get('types/{id}', function ($id) {
 
-	$type = App\Models\Type::find($id);
-    return view('productlist',['type'=>$type]);
-
-});
-
-Route::get('users/create', function () {
-
-	return view('registerform');
-});
-
-Route::get('users/{id}', function ($id) {
-
-	$user = App\Models\User::find($id);
-    return view('userdetails',['user'=>$user]);
-
-
-});
 
 
 /*
@@ -51,4 +33,21 @@ Route::get('users/{id}', function ($id) {
 
 Route::group(['middleware' => ['web']], function () {
     //
+    Route::get('types/{id}', function ($id) {
+		$type = App\Models\Type::find($id);
+	    return view('productlist',['type'=>$type]);
+	});
+
+	Route::get('users/create', function () {
+		return view('registerform');
+	});
+
+	Route::get('users/{id}', function ($id) {
+		$user = App\Models\User::find($id);
+	    return view('userdetails',['user'=>$user]);
+	});
+
+	Route::post('users', function (App\Http\Requests\CreateUserRequest $req) {
+		$user = App\Models\User::create(Request::all());
+	});
 });
