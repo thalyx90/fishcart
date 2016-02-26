@@ -49,5 +49,19 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::post('users', function (App\Http\Requests\CreateUserRequest $req) {
 		$user = App\Models\User::create(Request::all());
+		return redirect('users/'.$user->id);
+	});
+
+	Route::get('users/{id}/edit', function ($id) {
+		$user = App\Models\User::find($id);
+		return view('edituserform',['user'=>$user]);
+	});
+
+	Route::put('users/{id}', function (App\Http\Requests\EditUserRequest $req,$id) {
+		$user = App\Models\User::find($id);
+		$user->fill(Request::all());
+		$user->save();
+		return redirect('users/'.$id);
+	
 	});
 });
