@@ -49,6 +49,9 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::post('users', function (App\Http\Requests\CreateUserRequest $req) {
 		$user = App\Models\User::create(Request::all());
+
+		$user->password = bcrypt($user->password);
+		$user->save();
 		return redirect('users/'.$user->id);
 	});
 
@@ -64,4 +67,71 @@ Route::group(['middleware' => ['web']], function () {
 		return redirect('users/'.$id);
 	
 	});
+
+	//creates a product
+    Route::get('products/create', function () { 
+        return view('createproductform');
+    });
+    
+    //post data from form to the data base
+    Route::post('products', function (App\Http\Requests\CreateProductRequest $req) { 
+        $product = App\Models\Product::create($req->all());
+
+        $newName = "photo".$product->id.".jpg";
+        Request::file("photo")->move("productphotos",$newName);
+
+        $product->photo = $newName;
+        $product->save();
+
+        return redirect('types/'.$product->type->id);
+
+    });
+    
+    
+    // loads data into update form
+    Route::get('products/{id}/edit', function ($id) { 
+        $product = App\Models\Product::find($id);
+        return view('editproductform',['product'=>$product]);
+    });
+    
+        // checks info then saves
+    Route::put('products/{id}', function(App\Http\Requests\EditProductRequest $req, $id) { 
+         $product = App\Models\Product::find($id);
+         $product->fill(Request::all());
+        $product->save();
+        return redirect('types/1');
+        
+    });
+
+
+	Route::get('login', function () {
+		return view("loginform");
+	});
+
+	Route::post('login', function (App\Http\Requests\LoginRequest $req) {
+		//processing
+	});
+
+
+
+
+
+
+
+
+
+	// Route::post('login', function () {
+
+	// 	$credential = Request::only("username","password");
+
+ //    	if(Auth::attempt($credential)){
+
+ //    		//can login
+ //    		return redirect('types/1');
+
+ //    	}else{
+ //    		return redirect("login")->with("message","Try again!");
+ //    	}
+	// });
+
 });
