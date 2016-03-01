@@ -45,20 +45,21 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('users/{id}', function ($id) {
 		$user = App\Models\User::find($id);
 	    return view('userdetails',['user'=>$user]);
-	});
+	})->middleware(['auth','auth.user']);
 
 	Route::post('users', function (App\Http\Requests\CreateUserRequest $req) {
 		$user = App\Models\User::create(Request::all());
 
 		$user->password = bcrypt($user->password);
 		$user->save();
+
 		return redirect('users/'.$user->id);
 	});
 
 	Route::get('users/{id}/edit', function ($id) {
 		$user = App\Models\User::find($id);
 		return view('edituserform',['user'=>$user]);
-	});
+	})->middleware(['auth']);
 
 	Route::put('users/{id}', function (App\Http\Requests\EditUserRequest $req,$id) {
 		$user = App\Models\User::find($id);
@@ -66,12 +67,12 @@ Route::group(['middleware' => ['web']], function () {
 		$user->save();
 		return redirect('users/'.$id);
 	
-	});
+	})->middleware(['auth']);
 
 	//creates a product
     Route::get('products/create', function () { 
         return view('createproductform');
-    });
+    })->middleware(['auth']);
     
     //post data from form to the data base
     Route::post('products', function (App\Http\Requests\CreateProductRequest $req) { 
@@ -85,14 +86,14 @@ Route::group(['middleware' => ['web']], function () {
 
         return redirect('types/'.$product->type->id);
 
-    });
+    })->middleware(['auth']);
     
     
     // loads data into update form
     Route::get('products/{id}/edit', function ($id) { 
         $product = App\Models\Product::find($id);
         return view('editproductform',['product'=>$product]);
-    });
+    })->middleware(['auth']);
     
         // checks info then saves
     Route::put('products/{id}', function(App\Http\Requests\EditProductRequest $req, $id) { 
@@ -101,7 +102,7 @@ Route::group(['middleware' => ['web']], function () {
         $product->save();
         return redirect('types/1');
         
-    });
+    })->middleware(['auth']);
 
 
 	Route::get('login', function () {
@@ -109,7 +110,25 @@ Route::group(['middleware' => ['web']], function () {
 	});
 
 	Route::post('login', function (App\Http\Requests\LoginRequest $req) {
-		//processing
+		//get credential
+		$credential = $req->only("username","password");
+
+		//ask Authenticator to check
+		if(Auth::attempt($credential)){
+			return redirect("types/1");
+		}else{
+			return redirect("login")->with("message","Try again!");
+		}
+
+	});
+
+	Route::get('logout', function () {
+
+		//log you out
+		Auth::logout();
+		//redirect to login
+		return redirect("login");
+		
 	});
 
 

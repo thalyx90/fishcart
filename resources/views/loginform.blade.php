@@ -19,4 +19,6 @@
 	</fielset>
 	{{ Form::close() }}
 
+	{{Session::get("message")}}
+
 @endsection		
