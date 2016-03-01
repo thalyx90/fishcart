@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9ec89bec17364dfda7ccdcaa6fce102d",
+    "hash": "bdda23295a5feb1b12ce5f34d87e98bd",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -159,6 +159,98 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "guzzle/guzzle",
+            "version": "v3.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": ">=2.1"
+            },
+            "replace": {
+                "guzzle/batch": "self.version",
+                "guzzle/cache": "self.version",
+                "guzzle/common": "self.version",
+                "guzzle/http": "self.version",
+                "guzzle/inflection": "self.version",
+                "guzzle/iterator": "self.version",
+                "guzzle/log": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/plugin": "self.version",
+                "guzzle/plugin-async": "self.version",
+                "guzzle/plugin-backoff": "self.version",
+                "guzzle/plugin-cache": "self.version",
+                "guzzle/plugin-cookie": "self.version",
+                "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
+                "guzzle/plugin-history": "self.version",
+                "guzzle/plugin-log": "self.version",
+                "guzzle/plugin-md5": "self.version",
+                "guzzle/plugin-mock": "self.version",
+                "guzzle/plugin-oauth": "self.version",
+                "guzzle/service": "self.version",
+                "guzzle/stream": "self.version"
+            },
+            "require-dev": {
+                "doctrine/cache": "*",
+                "monolog/monolog": "1.*",
+                "phpunit/phpunit": "3.7.*",
+                "psr/log": "1.0.*",
+                "symfony/class-loader": "*",
+                "zendframework/zend-cache": "<2.3",
+                "zendframework/zend-log": "<2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle": "src/",
+                    "Guzzle\\Tests": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Guzzle Community",
+                    "homepage": "https://github.com/guzzle/guzzle/contributors"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2014-01-28 22:29:15"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -569,6 +661,172 @@
                 "storage"
             ],
             "time": "2016-02-19 15:35:38"
+        },
+        {
+            "name": "moltin/cart",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moltin/cart.git",
+                "reference": "59d9a568e3d8886d727b1d5a0b0ab2d5ed30271c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moltin/cart/zipball/59d9a568e3d8886d727b1d5a0b0ab2d5ed30271c",
+                "reference": "59d9a568e3d8886d727b1d5a0b0ab2d5ed30271c",
+                "shasum": ""
+            },
+            "require": {
+                "moltin/currency": "dev-master",
+                "moltin/tax": "dev-master",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Moltin": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Moltin Ltd",
+                    "email": "support@molt.in"
+                }
+            ],
+            "description": "Shopping cart package",
+            "time": "2014-10-13 10:22:15"
+        },
+        {
+            "name": "moltin/currency",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moltin/currency.git",
+                "reference": "58f6d5a343d71b35045ad792be5fbce20148eaf8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moltin/currency/zipball/58f6d5a343d71b35045ad792be5fbce20148eaf8",
+                "reference": "58f6d5a343d71b35045ad792be5fbce20148eaf8",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/guzzle": "~3.8",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.7.*",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Moltin": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Moltin Ltd",
+                    "email": "support@molt.in",
+                    "homepage": "http://molt.in",
+                    "role": "Vendor"
+                }
+            ],
+            "description": "Currency conversion and formatting",
+            "time": "2014-10-10 14:18:14"
+        },
+        {
+            "name": "moltin/laravel-cart",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moltin/laravel-cart.git",
+                "reference": "4d492fa2dd80d2d1cd5c1f746a7e428af916336e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moltin/laravel-cart/zipball/4d492fa2dd80d2d1cd5c1f746a7e428af916336e",
+                "reference": "4d492fa2dd80d2d1cd5c1f746a7e428af916336e",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.0",
+                "moltin/cart": "dev-master",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Moltin": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Moltin Ltd",
+                    "email": "support@molt.in"
+                }
+            ],
+            "description": "Shopping cart package",
+            "time": "2015-10-27 18:43:45"
+        },
+        {
+            "name": "moltin/tax",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moltin/tax.git",
+                "reference": "07de430eb0737045dae4c0b1afbd1e5e8d2e4cc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moltin/tax/zipball/07de430eb0737045dae4c0b1afbd1e5e8d2e4cc8",
+                "reference": "07de430eb0737045dae4c0b1afbd1e5e8d2e4cc8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Moltin": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Moltin Ltd",
+                    "email": "support@molt.in"
+                }
+            ],
+            "description": "Tax calculation",
+            "time": "2015-02-06 22:15:42"
         },
         {
             "name": "monolog/monolog",
@@ -3056,8 +3314,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "moltin/laravel-cart": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

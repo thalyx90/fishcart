@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+// Route::get('/', function () {
 
-    $type = App\Models\Type::find(2);
-    return view('productlist',['type'=>$type]);
-});
+//     $type = App\Models\Type::find(2);
+//     return view('productlist',['type'=>$type]);
+// });
 
 
 
@@ -32,6 +32,15 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
+
+	Route::get('/', function () {
+
+	    dd(Cart::contents());
+	});
+
+
+
+
     //
     Route::get('types/{id}', function ($id) {
 		$type = App\Models\Type::find($id);
@@ -131,13 +140,47 @@ Route::group(['middleware' => ['web']], function () {
 		
 	});
 
+	Route::get('cart-items', function () {
+
+		
+
+		return view('showcart');
+		
+	});
+	Route::post('cart-items', function () {
+
+		$product = App\Models\Product::find(Request::input('product_id'));
+
+		$items = array(
+		    'id' => $product->id,
+		    'name' => $product->name,
+		    'price' => $product->price,
+		    'quantity' => Request::input('quantity')
+		);
+
+		// Make the insert...
+		Cart::insert($items);
+
+		return redirect('cart-items');
 
 
+		
+	});
+	Route::delete('cart-items/{identifier}', function ($identifier) {
 
+		Cart::item($identifier)->remove();
+		
+		return redirect('cart-items');
 
+		
+	});
 
+	Route::get('products/{id}', function ($id) {
 
-
+		$product = App\Models\Product::find($id);
+		return view('showproduct',['product'=>$product]);
+		
+	});
 
 	// Route::post('login', function () {
 
