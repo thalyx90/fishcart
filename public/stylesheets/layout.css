@@ -147,6 +147,11 @@ img{
 
 }
 
+.pagination li{
+	display: inline-block;
+	width: auto;
+}
+
 
 
 

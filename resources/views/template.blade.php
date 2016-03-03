@@ -70,7 +70,8 @@
 					@endif
 
 
-					<li><a href="" >2 items <i class="icon-shopping-cart"></i></a></li>
+					<li><a href="{{url('cart-items')}}" >2 items <i class="icon-shopping-cart"></i></a></li>
+					<li><a href="{{url('orders')}}" >Orders </a></li>
 					<li><a href="">About</a></li>
 					<li><a href="">Contact</a></li>
 				</ul>

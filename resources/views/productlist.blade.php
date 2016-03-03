@@ -3,7 +3,9 @@
 @section('content')
 		<h2>{{$type->name}}</h2>
 
-		@foreach($type->products as $product)
+		<?php $products = $type->products()->paginate(6);?>
+
+		@foreach( $products as $product)
 
 			<article class="group">
 
@@ -16,6 +18,8 @@
 			</article>
 
 		@endforeach
+
+		{!!$products->links()!!}
 
 
 @stop			

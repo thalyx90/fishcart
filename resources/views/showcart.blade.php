@@ -32,8 +32,8 @@
         </div>
     </div>
 
-    <form method="POST" action="">
-        <input type="submit" value="Checkout">
-    </form>
+    {{ Form::open(['url' => 'orders']) }}
+    <input type="submit" value="Checkout">
+    {{ Form::close() }}
      
 @stop

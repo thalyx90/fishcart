@@ -11,11 +11,11 @@
 |
 */
 
-// Route::get('/', function () {
+Route::get('/', function () {
 
-//     $type = App\Models\Type::find(2);
-//     return view('productlist',['type'=>$type]);
-// });
+    $type = App\Models\Type::find(2);
+    return view('productlist',['type'=>$type]);
+});
 
 
 
@@ -32,13 +32,6 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-
-	Route::get('/', function () {
-
-	    dd(Cart::contents());
-	});
-
-
 
 
     //
@@ -182,18 +175,30 @@ Route::group(['middleware' => ['web']], function () {
 		
 	});
 
-	// Route::post('login', function () {
+	Route::post('orders', function () {
+		$order = new App\Models\Order();
+		$order->user_id = Auth::user()->id;
+		$order->status = "Pending";
+		$order->save();
 
-	// 	$credential = Request::only("username","password");
+		foreach(Cart::contents() as $item){
 
- //    	if(Auth::attempt($credential)){
+			$order->products()->attach($item->id,
+										["quantity"=>$item->quantity]);
+		}
 
- //    		//can login
- //    		return redirect('types/1');
+		Cart::destroy();
+		return redirect("types/1");
+		
+	})->middleware(['auth']);
 
- //    	}else{
- //    		return redirect("login")->with("message","Try again!");
- //    	}
-	// });
+
+	Route::get('orders', function () {
+
+		$orders = Auth::user()->orders;
+
+		return view("showorders",['orders'=>$orders]);
+
+	})->middleware(['auth']);
 
 });
