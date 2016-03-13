@@ -71,67 +71,15 @@ Route::group(['middleware' => ['web']], function () {
 	
 	})->middleware(['auth']);
 
-	//creates a product
-    Route::get('products/create', function () { 
-        return view('createproductform');
-    })->middleware(['auth']);
-    
-    //post data from form to the data base
-    Route::post('products', function (App\Http\Requests\CreateProductRequest $req) { 
-        $product = App\Models\Product::create($req->all());
-
-        $newName = "photo".$product->id.".jpg";
-        Request::file("photo")->move("productphotos",$newName);
-
-        $product->photo = $newName;
-        $product->save();
-
-        return redirect('types/'.$product->type->id);
-
-    })->middleware(['auth']);
-    
-    
-    // loads data into update form
-    Route::get('products/{id}/edit', function ($id) { 
-        $product = App\Models\Product::find($id);
-        return view('editproductform',['product'=>$product]);
-    })->middleware(['auth']);
-    
-        // checks info then saves
-    Route::put('products/{id}', function(App\Http\Requests\EditProductRequest $req, $id) { 
-         $product = App\Models\Product::find($id);
-         $product->fill(Request::all());
-        $product->save();
-        return redirect('types/1');
-        
-    })->middleware(['auth']);
 
 
-	Route::get('login', function () {
-		return view("loginform");
-	});
+	Route::resource('products', 'ProductController');
+	
 
-	Route::post('login', function (App\Http\Requests\LoginRequest $req) {
-		//get credential
-		$credential = $req->only("username","password");
+	Route::get('login', "LoginController@showLoginForm");
+	Route::post('login', "LoginController@processLogin");
+	Route::get('logout', "LoginController@logout");
 
-		//ask Authenticator to check
-		if(Auth::attempt($credential)){
-			return redirect("types/1");
-		}else{
-			return redirect("login")->with("message","Try again!");
-		}
-
-	});
-
-	Route::get('logout', function () {
-
-		//log you out
-		Auth::logout();
-		//redirect to login
-		return redirect("login");
-		
-	});
 
 	Route::get('cart-items', function () {
 
@@ -168,12 +116,7 @@ Route::group(['middleware' => ['web']], function () {
 		
 	});
 
-	Route::get('products/{id}', function ($id) {
-
-		$product = App\Models\Product::find($id);
-		return view('showproduct',['product'=>$product]);
-		
-	});
+	
 
 	Route::post('orders', function () {
 		$order = new App\Models\Order();

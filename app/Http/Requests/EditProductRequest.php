@@ -24,10 +24,9 @@ class EditProductRequest extends Request
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name'=>'required|unique:products,name,'.$this->route('products'),
             'description'=>'required',
             'price'=>'required',
-            'photo'=>'required',
             'type_id'=>'required'
         ];
     }
