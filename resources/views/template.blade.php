@@ -1,3 +1,4 @@
+@if(!Request::ajax())
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -53,7 +54,7 @@
 
 					@foreach(App\Models\Type::all() as $type)
 
-					<li><a href="{{url('types/'.$type->id)}}">{{$type->name}}</a></li>
+					<li><a class="nav-type" href="{{url('types/'.$type->id)}}">{{$type->name}}</a></li>
 
 					@endforeach
 
@@ -78,14 +79,15 @@
 			</nav>
 		</header>
 		<div class="main group">
-			
+@endif			
 			@yield('content')
-			
+@if(!Request::ajax())			
 		</div>
 		<footer></footer>
 
 	</div><!-- container -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="{{asset('js/spin.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
 
 
@@ -94,3 +96,4 @@
 ================================================== -->
 </body>
 </html>
+@endif

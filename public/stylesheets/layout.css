@@ -146,7 +146,9 @@ img{
 	border-bottom: thin dotted rgb(200,200,200);
 
 }
-
+.pagination{
+	clear:both;
+}
 .pagination li{
 	display: inline-block;
 	width: auto;

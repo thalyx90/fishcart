@@ -36,6 +36,7 @@ Route::group(['middleware' => ['web']], function () {
 
     //
     Route::get('types/{id}', function ($id) {
+    	sleep(1);
 		$type = App\Models\Type::find($id);
 	    return view('productlist',['type'=>$type]);
 	});
@@ -143,5 +144,6 @@ Route::group(['middleware' => ['web']], function () {
 		return view("showorders",['orders'=>$orders]);
 
 	})->middleware(['auth']);
+
 
 });

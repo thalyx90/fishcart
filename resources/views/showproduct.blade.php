@@ -15,6 +15,12 @@
 		{{ Form::hidden('product_id', $product->id)}}
 		<input type="submit" value="Add">
 		{{ Form::close() }}
+
+
+
+		{{ Form::open(['url'=>'products/'.$product->id, 'method'=>'delete']) }}
+			<input type="submit" value="Delete">
+		{{ Form::close() }}
 		
 
 @stop			
