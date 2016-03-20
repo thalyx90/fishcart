@@ -20,7 +20,10 @@
             <label for="">Photo.</label>
             {{Form::file('photo')}}
             {!! $errors->first('photo', '<p class="error">:message</p>')!!}
-           
+            <div class="dropzone" id="image-upload"></div>
+            <img src="" alt="" id="photo">
+
+            
             <label for="">Type.</label>
             {{Form::select('type_id', \App\Models\Type::lists('name','id'))}}
             {!! $errors->first('type_id', '<p class="error">:message</p>')!!}

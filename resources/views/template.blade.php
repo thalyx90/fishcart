@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="{{asset('stylesheets/base.css')}}">
 <!-- 	<link rel="stylesheet" href="stylesheets/skeleton.css"> -->
 	<link rel="stylesheet" href="{{asset('stylesheets/layout.css')}}">
-
+	<link rel="stylesheet" href="{{asset('plugins/dropzone/dropzone.css')}}">
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -86,8 +86,15 @@
 		<footer></footer>
 
 	</div><!-- container -->
+	<div id="token">{{csrf_token()}}</div>
+	<div id="public">{{url("/")}}</div>
+
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="{{asset('js/spin.js')}}"></script>
+	<script src="{{asset('js/jquery.history.js')}}"></script>
+	<script src="{{asset('js/jquery.jeditable.js')}}"></script>
+	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+	<script src="{{asset('plugins/dropzone/dropzone.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
 
 

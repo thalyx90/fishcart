@@ -14,8 +14,8 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth',
-        ['only'=>['create','store','edit','update']]);
+        // $this->middleware('auth',
+        // ['only'=>['create','store','edit','update']]);
     }
     /**
      * Display a listing of the resource.

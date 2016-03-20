@@ -5,13 +5,22 @@
 		<h2>Your Details</h2>
 
 		<h4>First name:</h4>
-		<p>{{$user->firstname}}</p>
+		<div  data-editable="firstname"
+			data-url="{{url('users/'.$user->id)}}"
+		>{!!$user->firstname!!}</div>
 
 		<h4>Last name:</h4>
-		<p>{{$user->lastname}}</p>
+		<div 	data-editable="lastname"
+			data-url="{{url('users/'.$user->id)}}"
+		>{!!$user->lastname!!}</div>
 
 		<h4>Email:</h4>
-		<p>{{$user->email}}</p>
+		<p 	data-editable="email"
+			data-url="{{url('users/'.$user->id)}}"
+		>{!!$user->email!!}</div>
+
+
+		<div id="token">{{csrf_token()}}</div>
 
 @stop			
 		

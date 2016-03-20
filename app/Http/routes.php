@@ -48,7 +48,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('users/{id}', function ($id) {
 		$user = App\Models\User::find($id);
 	    return view('userdetails',['user'=>$user]);
-	})->middleware(['auth','auth.user']);
+	});
 
 	Route::post('users', function (App\Http\Requests\CreateUserRequest $req) {
 		$user = App\Models\User::create(Request::all());
@@ -64,13 +64,26 @@ Route::group(['middleware' => ['web']], function () {
 		return view('edituserform',['user'=>$user]);
 	})->middleware(['auth']);
 
-	Route::put('users/{id}', function (App\Http\Requests\EditUserRequest $req,$id) {
+	Route::put('users/{id}', function ($id) {
 		$user = App\Models\User::find($id);
-		$user->fill(Request::all());
-		$user->save();
-		return redirect('users/'.$id);
-	
-	})->middleware(['auth']);
+
+		if(!Request::ajax()){
+			$user->fill(Request::all());
+			$user->save();
+			return redirect('users/'.$id);
+		}else{
+
+			//get column to update
+			$column = Request::input('column');
+			//get value to update
+			$value = Request::input('value');
+
+			$user->$column = $value;
+			$user->save();
+			return $value;
+		}
+		
+	});
 
 
 
@@ -144,6 +157,14 @@ Route::group(['middleware' => ['web']], function () {
 		return view("showorders",['orders'=>$orders]);
 
 	})->middleware(['auth']);
+
+	Route::post('photos', function () {
+
+		$image =  'photo' . base_convert(rand(),10,36) . '.jpg';
+		Request::file('photo')->move('uploads',$image);
+		return $image;
+
+	});
 
 
 });
